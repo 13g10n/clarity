@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  clarity:
+    build:
+      context: .
+    ports:
+      - "8080:8000"
+    volumes:
+      - .data/clarity/example.clarity.yaml:/clarity/clarity.yaml
+      - .data/clarity/custom:/clarity/custom

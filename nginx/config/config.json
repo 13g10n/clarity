@@ -1,0 +1,38 @@
+{
+    "listeners":{
+        "*:8000":{
+            "pass": "routes"
+        }
+    },
+    "routes": [
+        {
+            "match": {
+                "uri": "/api/*"
+            },
+            "action": {
+                "pass": "applications/api"
+            }
+        },
+        {
+            "match": {
+                "uri": "/custom/*"
+            },
+            "action": {
+                "share": "/clarity$uri"
+            }
+        },
+        {
+            "action": {
+                "share": "/app/clarity/static$uri"
+            }
+        }
+    ],
+    "applications":{
+        "api":{
+            "type":"python 3",
+            "path":"/app/",
+            "module": "clarity.app",
+            "callable": "app"
+        }
+    }
+}
